@@ -1,0 +1,79 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+    <text>当前时间：{{time}}</text>
+    <view>{{ msg }}</view>
+    <button bindtap="clickMe">点击扫一扫</button>
+  </view>
+  <view>
+    <text>{{ a + 1 === b ? "你牛" : "你不牛"}}</text>
+    <text>{{[1,2,3]}}</text>
+    <text>{{"1,2,3"}}</text>
+  </view>
+
+  <view wx:for="{{message}}">
+    {{index}} {{item.a}} {{item.b}}
+  </view>
+  {{"*******************************************************************************"}}
+  <block wx:for="{{[1,1,1]}}">
+    <view>{{index}}</view>
+    <view>{{item}}</view>
+  </block>
+
+  <map longitude="116.397128" latitude="39.916527"></map>
+
+  {{"*******************************************************************************"}}
+
+  <switch wx:for="{{objectArray}}" wx:key="unique" > {{item.id}} </switch>
+  <button bindtap="switch"> Switch </button>
+  <button bindtap="addToFront"> Add to the front </button>
+
+
+  <switch wx:for="{{numberArray}}" wx:key="*this" > {{item}} </switch>
+  <button bindtap="addNumberToFront"> Add Number to the front </button>
+
+  <template name="msgItem">
+    <view>
+      <text> {{index}}: {{msg}} </text>
+      <text> Time: {{time}} </text>
+    </view>
+  </template>
+
+  <template is="msgItem" data="{{items}}"/>
+
+  {{"*******************************************************************************"}}
+
+    <view class="page">
+      <!--页头-->
+      <view class="page__hd"></view>
+      <!--主体-->
+      <view class="page__bd"></view>
+      <!--没有页脚-->
+      <view class="weui-footer">我是页脚</view>
+    </view>
+
+    <view class="weui-footer">
+      <view class="weui-footer__links">
+          <navigator url="" class="weui-footer__link">小黄象</navigator>
+        </view>
+        <view class="weui-footer__text">Copyright © 精品专栏组</view>
+
+    </view>
+
+    <view class="section">
+      <view class="section__title">flex-direction: row</view>
+        <view class="flex-wrp" style="flex-direction:row;">
+        <view class="flex-item bc_green">1</view>
+        <view class="flex-item bc_red">2</view>
+        <view class="flex-item bc_blue">3</view>
+      </view>
+    </view>
+</view>
