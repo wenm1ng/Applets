@@ -76,4 +76,24 @@
         <view class="flex-item bc_blue">3</view>
       </view>
     </view>
+  {{"*******************************************************************************"}}
+
+    <view id="outer" catchtap="handleTap">
+      <view id="inner">点击我</view>
+    </view>
+
+    <view
+      id="outer"
+      bind:touchstart="handleTap1"
+      capture-catch:touchstart="handleTap2"
+    >
+      outer view
+      <view
+        id="inner"
+        bind:touchstart="handleTap3"
+        capture-bind:touchstart="handleTap4"
+      >
+        inner view
+      </view>
+    </view>
 </view>

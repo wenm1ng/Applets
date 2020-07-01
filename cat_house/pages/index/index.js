@@ -54,7 +54,7 @@ Page({
       app.userInfoReadyCallback = res => {
         this.setData({
           userInfo: res.userInfo,
-          hasUserInfo: true
+          hasUserInfo: true,
         })
       }
     } else {
@@ -112,11 +112,12 @@ Page({
   },
   onPageScroll:function(e){
     console.log('文明还是很帅');
-    wx.navigateTo({ url: '../../pages/article/article?id=1&other=abc' })
+    // wx.navigateTo({ url: '../../pages/article/article?id=1&other=abc' })
     //使用 wx.navigateTo({ url: 'pageD' }) 可以往当前页面栈多推入一个 pageD，此时页面栈变成 [ pageA, pageB, pageC, pageD ]。
     // 使用 wx.navigateBack() 可以退出当前页面栈的最顶上页面，此时页面栈变成 [ pageA, pageB, pageC ]。
     // 使用wx.redirectTo({ url: 'pageE' }) 是替换当前页变成pageE，此时页面栈变成 [ pageA, pageB, pageE ]
-  }
+  },
+
   //参数
   // data  Object  页面的初始数据
   // onLoad  Function  生命周期函数--监听页面加载，触发时机早于onShow和onReady
@@ -129,4 +130,85 @@ Page({
   // onShareAppMessage Function  用户点击右上角转发
   // onPageScroll  Function  页面滚动触发事件的处理函数
   // 其他  Any 可以添加任意的函数或数据，在Page实例的其他函数中用 this 可以访问
+  
+  // https://mp.weixin.qq.com/debug/wxadoc/dev/api/ 微信官方api文档
+  // 发起网络请求
+  // wx.request({
+  //   url: 'test.php',
+  //   data: {},
+  //   header: { 'content-type': 'application/json' },
+  //   success: function(res) {
+  //    // 收到https服务成功后返回
+  //    console.log(res.data)
+  //   },
+  //   fail: function() {
+  //    // 发生网络错误等情况触发
+  //   },
+  //   complete: function() {
+  //    // 成功或者失败后触发
+  //   }
+  // })
+  
+  //事件官方文档 https://mp.weixin.qq.com/debug/wxadoc/dev/component/ 
+  // touchstart  手指触摸动作开始
+  // touchmove 手指触摸后移动
+  // touchcancel 手指触摸动作被打断，如来电提醒，弹窗
+  // touchend  手指触摸动作结束
+  // tap 手指触摸后马上离开
+  // longpress 手指触摸后，超过350ms再离开，如果指定了事件回调函数并触发了这个事件，tap事件将不被触发
+  // longtap 手指触摸后，超过350ms再离开（推荐使用longpress事件代替）
+  // transitionend 会在 WXSS transition 或 wx.createAnimation 动画结束后触发
+  // animationstart  会在一个 WXSS animation 动画开始时触发
+  // animationiteration  会在一个 WXSS animation 一次迭代结束时触发
+  // animationend  会在一个 WXSS animation 动画完成时触发
+  // 
+  
+  //回调对象参数
+  // type  String  事件类型
+  // timeStamp Integer 页面打开到触发事件所经过的毫秒数
+  // target  Object  触发事件的组件的一些属性值集合
+  // currentTarget Object  当前组件的一些属性值集合
+  // detail  Object  额外的信息
+  // touches Array 触摸事件，当前停留在屏幕中的触摸点信息的数组
+  // changedTouches  Array 触摸事件，当前变化的触摸点信息的数组
+  handleTap: function(evt) {
+      console.log(evt)
+       // 当点击inner节点时
+    // evt.target 是inner view组件
+       // evt.currentTarget 是绑定了handleTap的outer view组件
+       // evt.type == “tap”
+       // evt.timeStamp == 1542
+       // evt.detail == {x: 270, y: 63}
+       // evt.touches == [{identifier: 0, pageX: 270, pageY: 63, clientX: 270, clientY: 63}]
+       // evt.changedTouches == [{identifier: 0, pageX: 270, pageY: 63, clientX: 270, clientY: 63}]
+
+      //target 、currentTarget对象属性
+      // id String  当前组件的id
+      // tagName String  当前组件的类型
+      // dataset Object  当前组件上由data-开头的自定义属性组成的集合
+  },
+  handleTap1: function(evt) {
+    console.log(1);
+  },
+  handleTap2: function(evt) {
+    console.log(2);
+  },
+  handleTap3: function(evt) {
+    console.log(3);
+  },
+  handleTap4: function(evt) {
+    console.log(4);
+  },
+
+  //wx.getSystemInfo wx.getSystemInfoSync 获取手机信息
+  //判断做兼容
+  //if (wx.openBluetoothAdapter) {
+  //   wx.openBluetoothAdapter()
+  // } else {
+  //   // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
+  //   wx.showModal({
+  //     title: '提示',
+  //     content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+  //   })
+  // }
 })
